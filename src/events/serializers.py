@@ -4,6 +4,8 @@ from .models import Event
 
 
 class EventSerializer(serializers.ModelSerializer):
+    place_name = serializers.CharField(source="place.name", read_only=True)
+
     class Meta:
         model = Event
         fields = (
@@ -11,5 +13,5 @@ class EventSerializer(serializers.ModelSerializer):
             "name",
             "date",
             "status",
-            "place",
+            "place_name",
         )
