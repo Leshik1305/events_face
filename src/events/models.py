@@ -26,12 +26,13 @@ class Place(models.Model):
         return self.name
 
 
+class EventStatus(models.TextChoices):
+    OPEN = "open", "Open"
+    CLOSED = "closed", "Closed"
+
+
 class Event(models.Model):
     """Модель мероприятия"""
-
-    class Status(models.TextChoices):
-        OPEN = "open", "Open"
-        CLOSED = "closed", "Closed"
 
     id = models.UUIDField(
         primary_key=True,
@@ -46,8 +47,8 @@ class Event(models.Model):
     date = models.DateField(verbose_name="Дата проведения")
     status = models.CharField(
         max_length=6,
-        choices=Status.choices,
-        default=Status.OPEN,
+        choices=EventStatus.choices,
+        default=EventStatus.OPEN,
         verbose_name="Статус мероприятия",
     )
     place = models.ForeignKey(
