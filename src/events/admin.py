@@ -1,7 +1,7 @@
 # Register your models here.
 from django.contrib import admin
 
-from .models import Place, Event
+from .models import Event, Place
 
 
 @admin.register(Place)
