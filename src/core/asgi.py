@@ -10,12 +10,10 @@ https://docs.djangoproject.com/en/6.0/howto/deployment/asgi/
 import os
 import sys
 
+import os
+
 from django.core.asgi import get_asgi_application
 
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.core.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
 application = get_asgi_application()

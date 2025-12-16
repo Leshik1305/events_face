@@ -41,7 +41,7 @@ class Event(models.Model):
     )
     name = models.CharField(
         max_length=255,
-        verbose_name="Название площадки",
+        verbose_name="Название мероприятия",
     )
     date = models.DateField(verbose_name="Дата проведения")
     status = models.CharField(
