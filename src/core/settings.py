@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "src.events.apps.EventsConfig",
     "django_filters",
+    "users_auth.apps.UsersAuthConfig",
 ]
 
 REST_FRAMEWORK = {
