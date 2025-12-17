@@ -12,3 +12,8 @@ class SyncResult(models.Model):
     updated_events_count = models.PositiveIntegerField(
         default=0, verbose_name="Количество обновленных мероприятий"
     )
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Синхронизация"
+        verbose_name_plural = "Синхронизации"
