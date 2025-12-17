@@ -8,6 +8,7 @@ dependencies = [
     "django>=6.0",
     "django-filter>=25.2",
     "djangorestframework>=3.16.1",
+    "rest-framework-simplejwt>=0.0.2",
     "ruff>=0.14.9",
 ]
 [tool.ruff.lint]
