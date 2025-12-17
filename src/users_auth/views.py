@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .serializers import RegisterSerializer
 
@@ -10,9 +11,10 @@ from .serializers import RegisterSerializer
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
-        serializer = RegisterSerializer()
-        return Response(serializer.data)
+    # Функция нам не нужна, но с ней удобнее тестировать, сразу видно какие поля заполнять
+    # def get(self, request):
+    #     serializer = RegisterSerializer()
+    #     return Response(serializer.data)
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -21,7 +23,6 @@ class RegisterView(APIView):
                 data = serializer.create(serializer.validated_data)
                 return Response(
                     {
-                        "message": "User created successfully",
                         "access_token": data["access"],
                         "refresh_token": data["refresh"],
                     },
@@ -34,3 +35,30 @@ class RegisterView(APIView):
                 )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LoginView(TokenObtainPairView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        try:
+
+            serializer.is_valid(raise_exception=True)
+
+            token_data = serializer.validated_data
+
+            return Response(
+                {
+                    "access_token": token_data.get("access"),
+                    "refresh_token": token_data.get("refresh"),
+                },
+                status=status.HTTP_200_OK,
+            )
+        except Exception as e:
+
+            return Response(
+                {"error": "Invalid username or password."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

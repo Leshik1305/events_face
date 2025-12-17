@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics
 from rest_framework.pagination import CursorPagination
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from .filters import EventFilter
 from .models import Event, EventStatus
@@ -22,6 +23,7 @@ class EventCursorPagination(CursorPagination):
 class EventListView(generics.ListAPIView):
     """Класс представления списка мероприятий"""
 
+    # permission_classes = [IsAuthenticated]
     queryset = Event.objects.select_related("place").filter(status=EventStatus.OPEN)
     serializer_class = EventSerializer
     pagination_class = EventCursorPagination
