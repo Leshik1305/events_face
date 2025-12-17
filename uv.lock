@@ -63,7 +63,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = ">=6.0" },
+    { name = "django", specifier = ">=5.1" },
     { name = "django-filter", specifier = ">=25.2" },
     { name = "djangorestframework", specifier = ">=3.16.1" },
     { name = "rest-framework-simplejwt", specifier = ">=0.0.2" },
