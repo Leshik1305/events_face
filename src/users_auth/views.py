@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.db import IntegrityError
 from rest_framework import status
 from rest_framework.permissions import (
@@ -15,9 +16,9 @@ class RegisterView(APIView):
     permission_classes = [AllowAny]
 
     # Функция нам не нужна, но с ней удобнее тестировать, сразу видно какие поля заполнять
-    # def get(self, request):
-    #     serializer = RegisterSerializer()
-    #     return Response(serializer.data)
+    def get(self, request):
+        serializer = RegisterSerializer()
+        return Response(serializer.data)
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)

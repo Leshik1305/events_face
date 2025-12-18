@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("src.events.urls")),
     path("api/auth/", include("users_auth.urls")),
+    path("api/drf-auth/", include("rest_framework.urls")),
 ]
